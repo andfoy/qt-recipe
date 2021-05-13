@@ -17,7 +17,7 @@ export CXX=${GXX}
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
 
-../configure prefix ${PREFIX} \
+../configure -prefix ${PREFIX} \
              -libdir ${PREFIX}/lib \
              -bindir ${PREFIX}/bin \
              -headerdir ${PREFIX}/include/qt \
