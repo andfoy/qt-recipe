@@ -17,6 +17,21 @@ export CXX=${GXX}
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
 
-../configure -opensource -nomake examples -nomake tests -gstreamer 1.0 -skip qtwebengine -confirm-license
+../configure prefix ${PREFIX} \
+             -libdir ${PREFIX}/lib \
+             -bindir ${PREFIX}/bin \
+             -headerdir ${PREFIX}/include/qt \
+             -archdatadir ${PREFIX} \
+             -datadir ${PREFIX} \
+             -I ${PREFIX}/include \
+             -L ${PREFIX}/lib \
+             -L ${BUILD_PREFIX}/${HOST}/sysroot/usr/lib64 \
+             -opensource \
+             -nomake examples \
+             -nomake tests \
+             -gstreamer 1.0 \
+             -skip qtwebengine \
+             -confirm-license \
+
 make -j$(nproc)
 exit 1
