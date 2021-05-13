@@ -26,12 +26,16 @@ export PATH=${PWD}:${PATH}
              -I ${PREFIX}/include \
              -L ${PREFIX}/lib \
              -L ${BUILD_PREFIX}/${HOST}/sysroot/usr/lib64 \
+             QMAKE_LFLAGS+="-Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -L$PREFIX/lib" \
              -opensource \
              -nomake examples \
              -nomake tests \
              -gstreamer 1.0 \
              -skip qtwebengine \
              -confirm-license \
+             -system-libjpeg \
+             -system-libpng \
+             -system-zlib \
 
 make -j$(nproc)
 exit 1
