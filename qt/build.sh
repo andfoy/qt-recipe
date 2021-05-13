@@ -38,4 +38,4 @@ export PATH=${PWD}:${PATH}
              -system-zlib \
 
 make -j$(nproc)
-exit 1
+make install
