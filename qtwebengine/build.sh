@@ -17,6 +17,8 @@ export CXX=${GXX}
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
 
+$(gcc -print-file-name=libc.so.6)
+
 # Set QMake prefix to $PREFIX
 qmake -set prefix $PREFIX
 
