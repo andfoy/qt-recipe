@@ -85,7 +85,6 @@ requirements:
     - expat                              # [linux]
     - libevent                           # [linux]
     - icu
-    # - jpeg
     - libpng
     - libiconv
     - nspr                               # [unix]
@@ -96,12 +95,14 @@ requirements:
     - zlib
     - libxcb                             # [linux]
     - qt >=5.15.2
+    - nodejs
   run:
     - gtk3
     - libpng
     - libjpeg-turbo
     - pulseaudio
     - gstreamer
+    - qt >=5.15.2
 
 # test:
 #   # Some packages might need a `test/commands` key to check CLI.

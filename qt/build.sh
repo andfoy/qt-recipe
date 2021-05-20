@@ -3,6 +3,15 @@ set -exou
 mkdir qt-build
 pushd qt-build
 
+
+#export AR=$(basename ${AR})
+#export RANLIB=$(basename ${RANLIB})
+#export STRIP=$(basename ${STRIP})
+#export OBJDUMP=$(basename ${OBJDUMP})
+#export CC=$(basename ${CC})
+#export CXX=$(basename ${CXX})
+
+
 USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
 echo USED_BUILD_PREFIX=${BUILD_PREFIX}
 
@@ -13,6 +22,7 @@ ln -s ${USED_BUILD_PREFIX}/bin/${HOST}-gcc-ar gcc-ar || true
 export LD=${GXX}
 export CC=${GCC}
 export CXX=${GXX}
+export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
 
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}

@@ -15,7 +15,10 @@ export CC=${GCC}
 export CXX=${GXX}
 
 chmod +x g++ gcc gcc-ar
-export PATH=${PWD}:${PATH}
+export PATH=$PREFIX/bin:${PWD}:${PATH}
+
+which pkg-config
+export PKG_CONFIG_EXECUTABLE=$(which pkg-config)
 
 $(gcc -print-file-name=libc.so.6)
 
@@ -25,7 +28,10 @@ qmake -set prefix $PREFIX
 qmake QMAKE_LIBDIR=${PREFIX}/lib \
       QMAKE_LFLAGS+="-Wl,-rpath,$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib -L$PREFIX/lib" \
       INCLUDEPATH+="${PREFIX}/include" \
+      PKG_CONFIG_EXECUTABLE=$(which pkg-config) \
       ..
 
-make -j$(nproc)
+#cat config.log
+# exit 1
+CPATH=$PREFIX/include make -j$(nproc)
 make install
