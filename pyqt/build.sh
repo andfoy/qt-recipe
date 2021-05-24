@@ -15,4 +15,4 @@ export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
 
-$PYTHON -m pip install . -vv
+CPATH=$PREFIX/include $PYTHON -m pip install . -vv
