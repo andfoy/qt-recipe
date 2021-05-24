@@ -23,6 +23,8 @@ requirements:
     - toml
   run:
     - python >=3.6
+    - packaging
+    - toml
 
 test:
   imports:
