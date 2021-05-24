@@ -18,6 +18,8 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-libgl') }}  # [linux]
+    - {{ cdt('mesa-libegl') }}     # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
     - {{ cdt('libselinux') }}  # [linux]
     - {{ cdt('libxdamage') }}  # [linux]
@@ -54,7 +56,7 @@ requirements:
     - {{ cdt('cups-devel') }}            # [linux]
     - {{ cdt('libxcb') }}                # [linux]
     - {{ cdt('expat-devel') }}           # [linux]
-    - {{ cdt('pcre') }}
+    - {{ cdt('pcre') }}                  # [linux]
   host:
     - python >=3.6
     - pip
