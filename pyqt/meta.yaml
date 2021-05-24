@@ -1,0 +1,61 @@
+{% set name = "pyqt" %}
+{% set version = "5.15.4" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 2a69597e0dd11caabe75fae133feca66387819fc9bc050f547e5551bce97e5be
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+    - sip >=6.1.0
+    - pyqt-builder >=1.10.0
+    - toml
+    - packaging
+    - qt >=5.15.2
+  run:
+    - python
+    - qt >=5.15.2
+
+test:
+  imports:
+    - PyQt5
+    # - simplejson.tests
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://www.riverbankcomputing.com/software/pyqt/
+  license: GPL-3.0-only
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'Python bindings for the Qt cross platform application toolkit'
+  # The remaining entries in this section are optional, but recommended.
+  description: |
+    PyQt5 is a comprehensive set of Python bindings for Qt v5.
+    It is implemented as more than 35 extension modules and enables Python
+    to be used as an alternative application development language to C++ on
+    all supported platforms including iOS and Android.
+  doc_url: https://www.riverbankcomputing.com/static/Docs/PyQt5/
+  dev_url: https://www.riverbankcomputing.com/mailman/listinfo/pyqt/
+
+extra:
+  recipe-maintainers:
+    # GitHub IDs for maintainers of the recipe.
+    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
+    - LisaSimpson
+    - LandoCalrissian
