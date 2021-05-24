@@ -1,0 +1,54 @@
+{% set name = "sip" %}
+{% set version = "6.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: f069d550dd819609e019e5dc58fc5193e081c7f3fb4f7dc8f9be734e34d4e56e
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - python >=3.6
+    - pip
+    - packaging
+    - toml
+  run:
+    - python >=3.6
+
+test:
+  imports:
+    - sipbuild
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://www.riverbankcomputing.com/software/sip/
+  license: GPL-3.0-only
+  license_family: GPL
+  license_file: LICENSE-GPL3
+  summary: 'A Python bindings generator for C/C++ libraries'
+  description: |
+    SIP is a collection of tools that makes it very easy to create Python
+    bindings for C and C++ libraries. It was originally developed in 1998
+    to create PyQt, the Python bindings for the Qt toolkit, but can be
+    used to create bindings for any C or C++ library. For example it is
+    also used to generate wxPython, the Python bindings for wxWidgets.
+  doc_url: https://www.riverbankcomputing.com/software/sip/
+
+extra:
+  recipe-maintainers:
+    # GitHub IDs for maintainers of the recipe.
+    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
+    - LisaSimpson
+    - LandoCalrissian
