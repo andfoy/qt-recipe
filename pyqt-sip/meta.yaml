@@ -30,8 +30,6 @@ requirements:
     - toml
 
 test:
-  imports:
-    - PyQt5_sip
   requires:
     - pip
   commands:
