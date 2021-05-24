@@ -17,6 +17,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}   # [linux]
+    - {{ cdt('mesa-dri-drivers') }}   # [linux]
+    - {{ cdt('mesa-libegl-devel') }}  # [linux]
   host:
     - python >=3.6
     - pip
