@@ -1,0 +1,51 @@
+{% set name = "PyQt5-sip" %}
+{% set version = "12.9.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: d3e4489d7c2b0ece9d203ae66e573939f7f60d4d29e089c9f11daa17cfeaae32
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python >=3.6
+    - setuptools
+    - wheel
+    - pip
+  run:
+    - python >=3.6
+    - sip >=6.1.0
+    - packaging
+    - toml
+
+test:
+  imports:
+    - PyQt5_sip
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://www.riverbankcomputing.com/software/sip/
+  license: GPL-3.0-only
+  license_family: GPL
+  license_file: LICENSE-GPL3
+  summary: 'The sip module support for PyQt5'
+  description: |
+    The sip extension module provides support for the PyQt5 package.
+
+extra:
+  recipe-maintainers:
+    # GitHub IDs for maintainers of the recipe.
+    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
+    - LisaSimpson
+    - LandoCalrissian
