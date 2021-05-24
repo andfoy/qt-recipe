@@ -54,7 +54,7 @@ requirements:
     - {{ cdt('cups-devel') }}            # [linux]
     - {{ cdt('libxcb') }}                # [linux]
     - {{ cdt('expat-devel') }}           # [linux]
-    - pcre
+    - {{ cdt('pcre') }}
   host:
     - python >=3.6
     - pip
