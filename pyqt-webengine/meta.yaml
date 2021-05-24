@@ -66,9 +66,11 @@ requirements:
     - packaging
     - qt >=5.15.2
     - qtwebengine
+    - pyqt >=5.15.4
   run:
     - python >=3.6
     - qt >=5.15.2
+    - pyqt >=5.15.4
     - qtwebengine
     - pyqt5-sip
 
