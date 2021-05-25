@@ -15,4 +15,6 @@ export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
 
+find /usr -name libgl*
+
 CPATH=$PREFIX/include $PYTHON -m pip install . -vv

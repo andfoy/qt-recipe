@@ -23,9 +23,13 @@ export LD=${GXX}
 export CC=${GCC}
 export CXX=${GXX}
 export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib64/pkgconfig/"
 
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
+
+# Copy XCB headers to PREFIX
+cp -r /usr/include/xcb $PREFIX/include
 
 ../configure -prefix ${PREFIX} \
              -libdir ${PREFIX}/lib \
@@ -46,6 +50,14 @@ export PATH=${PWD}:${PATH}
              -system-libjpeg \
              -system-libpng \
              -system-zlib \
+             -xcb \
+             -xcb-xlib \
+             -bundled-xcb-xinput
 
+# exit 1
 make -j$(nproc)
 make install
+
+
+# Remove XCB headers
+rm -rf $PREFIX/include/xcb
