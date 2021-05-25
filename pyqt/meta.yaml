@@ -68,7 +68,7 @@ requirements:
   run:
     - python >=3.6
     - qt >=5.15.2
-    - pyqt5-sip
+    - pyqt5-sip >=12.9.0
 
 test:
   imports:
