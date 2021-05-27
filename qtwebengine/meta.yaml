@@ -10,7 +10,7 @@ source:
   sha256: c8afca0e43d84f7bd595436fbe4d13a5bbdb81ec5104d605085d07545b6f91e0
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -96,6 +96,7 @@ requirements:
     - libxcb                             # [linux]
     - qt >=5.15.2
     - nodejs
+    - libwebp
   run:
     - gtk3
     - libpng

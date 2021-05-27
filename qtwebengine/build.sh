@@ -32,6 +32,6 @@ qmake QMAKE_LIBDIR=${PREFIX}/lib \
       ..
 
 #cat config.log
-# exit 1
+#exit 1
 CPATH=$PREFIX/include make -j$(nproc)
 make install
