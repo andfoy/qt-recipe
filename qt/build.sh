@@ -4,6 +4,15 @@ mkdir qt-build
 pushd qt-build
 
 
+# yum install libxcb-devel \
+# libxkbcommon-devel \
+# xcb-util-devel \
+# xcb-util-image-devel \
+# xcb-util-keysyms-devel \
+# xcb-util-renderutil-devel \
+# xcb-util-wm-devel \
+# mesa-libGL-devel \
+
 #export AR=$(basename ${AR})
 #export RANLIB=$(basename ${RANLIB})
 #export STRIP=$(basename ${STRIP})
