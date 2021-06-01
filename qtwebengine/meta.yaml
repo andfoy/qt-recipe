@@ -1,13 +1,15 @@
 {% set name = "qtwebengine" %}
-{% set version = "5.15.2" %}
+{% set version = "5.15.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: http://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/submodules/{{ name }}-everywhere-src-{{ version }}.tar.xz
-  sha256: c8afca0e43d84f7bd595436fbe4d13a5bbdb81ec5104d605085d07545b6f91e0
+  # url: http://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/submodules/{{ name }}-everywhere-src-{{ version }}.tar.xz
+  # sha256: c8afca0e43d84f7bd595436fbe4d13a5bbdb81ec5104d605085d07545b6f91e0
+  url: https://github.com/qt/qtwebengine/archive/refs/tags/v{{ version }}-lts.tar.gz
+  sha256: a7ed7e8755f9c781af6725ba974c27222af310fbd3ceb99251884da48799350c
 
 build:
   number: 1
