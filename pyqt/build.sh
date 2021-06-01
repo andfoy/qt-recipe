@@ -17,24 +17,17 @@ export PATH=${PWD}:${PATH}
 
 find /usr -name libgl*
 
-# if [[ $(arch) == "x86_64" ]]; then
-#   CPATH=$PREFIX/include $PYTHON -m pip install . -vv
-# fi
+which make
 
-#if [[ $(arch) == "aarch64" ]]; then
-    which make
+SITE_PKGS_PATH=$(python -c 'import site;print(site.getsitepackages()[0])')
+echo $SITE_PKGS_PATH
 
-    SITE_PKGS_PATH=$(python -c 'import site;print(site.getsitepackages()[0])')
-    echo $SITE_PKGS_PATH
+sip-build \
+--verbose \
+--confirm-license \
+--target-dir $SITE_PKGS_PATH \
+--no-make
 
-    sip-build \
-    --verbose \
-    --confirm-license \
-    --target-dir $SITE_PKGS_PATH \
-    --no-make
-
-   pushd build
-   CPATH=$PREFIX/include make -j$(nproc)
-   make install
-#fi
-
+pushd build
+CPATH=$PREFIX/include make -j$(nproc)
+make install
