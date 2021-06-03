@@ -86,7 +86,7 @@ requirements:
     - gtk3
     # - libpng
     - libjpeg-turbo
-    - pulseaudio
+    - pulseaudio                         # [linux and not aarch64]
     - gstreamer
     - pthread-stubs                      # [linux]
     - dbus                               # [linux]
@@ -116,7 +116,7 @@ requirements:
     - gtk3
     - libpng
     - libjpeg-turbo
-    - pulseaudio
+    - pulseaudio                         # [linux and not aarch64]
     - gstreamer
     - qt >=5.15.2
 
