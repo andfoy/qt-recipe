@@ -23,6 +23,8 @@ source:
   - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
     git_rev: 87-based
     folder: qtwebengine-chromium
+    patches:
+      - 0001-aarch64-sys-state-structs.patch  # [aarch64]
 
 build:
   number: 0
