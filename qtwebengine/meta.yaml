@@ -6,14 +6,23 @@ package:
   version: {{ version }}
 
 source:
-  # url: http://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/submodules/{{ name }}-everywhere-src-{{ version }}.tar.xz
-  # sha256: c8afca0e43d84f7bd595436fbe4d13a5bbdb81ec5104d605085d07545b6f91e0
-  url: https://github.com/qt/qtwebengine/archive/refs/tags/v{{ version }}-lts.tar.gz
-  sha256: a7ed7e8755f9c781af6725ba974c27222af310fbd3ceb99251884da48799350c
+  #- url: https://github.com/qt/qtwebengine/archive/refs/tags/v{{ version }}-lts.tar.gz
+  #  sha256: a7ed7e8755f9c781af6725ba974c27222af310fbd3ceb99251884da48799350c
 
-  url: https://github.com/qt/qtwebengine-chromium/archive/refs/heads/87-based.zip
-  sha256: dc7e37a28d9f49efe01dcef8761c1db720ffd0c98ccea9bd34a75470de056aab
-  folder: src/3rdparty
+  #- url: https://github.com/qt/qtwebengine-chromium/archive/refs/heads/87-based.zip
+  #  sha256: dc7e37a28d9f49efe01dcef8761c1db720ffd0c98ccea9bd34a75470de056aab
+  #  folder: src/3rdparty
+
+  #- url: https://github.com/qt/qtwebengine/archive/refs/tags/v{{ version }}-lts.tar.gz
+  #  sha256: a7ed7e8755f9c781af6725ba974c27222af310fbd3ceb99251884da48799350c
+  #  folder: qtwebengine
+
+  - git_url: https://code.qt.io/qt/qtwebengine.git
+    git_rev: v{{ version }}-lts
+
+  - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
+    git_rev: 87-based
+    folder: qtwebengine-chromium
 
 build:
   number: 0

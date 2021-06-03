@@ -1,5 +1,10 @@
 set -exou
 
+git submodule init
+git submodule set-url src/3rdparty "$BUILD_PREFIX"/qtwebengine-chromium
+git submodule set-branch --branch 87-based src/3rdparty
+git submodule update
+
 mkdir qtwebengine-build
 pushd qtwebengine-build
 
@@ -33,5 +38,5 @@ qmake QMAKE_LIBDIR=${PREFIX}/lib \
 
 #cat config.log
 #exit 1
-CPATH=$PREFIX/include make -j$(nproc)
+CPATH=$PREFIX/include:$BUILD_PREFIX/src/core/api make -j$(nproc)
 make install

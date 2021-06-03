@@ -10,7 +10,7 @@ source:
   sha256: cedc28f54165f4b8067652145aec7f732a17eadf6736835852868cf76119cc19
 
 build:
-  number: 0
+  number: 1
   # script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
@@ -67,12 +67,14 @@ requirements:
     - qt >=5.15.2
     - qtwebengine
     - pyqt >=5.15.4
+    - libwebp
   run:
     - python >=3.6
     - qt >=5.15.2
     - pyqt >=5.15.4
     - qtwebengine
     - pyqt5-sip
+    - libwebp
 
 test:
   imports:
