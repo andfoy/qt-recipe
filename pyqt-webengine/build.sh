@@ -15,4 +15,15 @@ export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
 chmod +x g++ gcc gcc-ar
 export PATH=${PWD}:${PATH}
 
-CPATH=$PREFIX/include $PYTHON -m pip install . -vv
+SITE_PKGS_PATH=$(python -c 'import site;print(site.getsitepackages()[0])')
+echo $SITE_PKGS_PATH
+
+sip-build \
+--verbose \
+--confirm-license \
+--target-dir $SITE_PKGS_PATH \
+--no-make
+
+pushd build
+CPATH=$PREFIX/include make -j$(nproc)
+make install
