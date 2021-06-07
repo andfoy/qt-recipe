@@ -1,9 +1,25 @@
 set -exou
 
+if [[ $(arch) == "aarch64" ]]; then
+pushd qtwebengine-chromium
+
+git config user.name 'Anonymous'
+git config user.email '<>'
+
+git add -A
+git commit -m "Patches"
+popd
+fi
+
 git submodule init
-git submodule set-url src/3rdparty "$BUILD_PREFIX"/qtwebengine-chromium
+git submodule set-url src/3rdparty "$SRC_DIR"/qtwebengine-chromium
 git submodule set-branch --branch 87-based src/3rdparty
 git submodule update
+
+pushd src/3rdparty
+git checkout 87-based
+git pull
+popd
 
 mkdir qtwebengine-build
 pushd qtwebengine-build
