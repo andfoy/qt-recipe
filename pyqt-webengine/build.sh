@@ -20,7 +20,6 @@ echo $SITE_PKGS_PATH
 
 sip-build \
 --verbose \
---confirm-license \
 --target-dir $SITE_PKGS_PATH \
 --no-make
 
