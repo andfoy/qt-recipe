@@ -20,27 +20,28 @@ pushd qt-build
 #export CC=$(basename ${CC})
 #export CXX=$(basename ${CXX})
 
+if [[ $(uname) == "Linux" ]]; then
+   USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
+   echo USED_BUILD_PREFIX=${BUILD_PREFIX}
 
-USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
-echo USED_BUILD_PREFIX=${BUILD_PREFIX}
+   ln -s ${GXX} g++ || true
+   ln -s ${GCC} gcc || true
+   ln -s ${USED_BUILD_PREFIX}/bin/${HOST}-gcc-ar gcc-ar || true
 
-ln -s ${GXX} g++ || true
-ln -s ${GCC} gcc || true
-ln -s ${USED_BUILD_PREFIX}/bin/${HOST}-gcc-ar gcc-ar || true
+   export LD=${GXX}
+   export CC=${GCC}
+   export CXX=${GXX}
+   export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
+   export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib64/pkgconfig/"
 
-export LD=${GXX}
-export CC=${GCC}
-export CXX=${GXX}
-export PKG_CONFIG_EXECUTABLE=$(basename $(which pkg-config))
-export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib64/pkgconfig/"
+   chmod +x g++ gcc gcc-ar
+   export PATH=${PWD}:${PATH}
 
-chmod +x g++ gcc gcc-ar
-export PATH=${PWD}:${PATH}
+   # Copy XCB headers to PREFIX
+   cp -r /usr/include/xcb $PREFIX/include
+   NPROC=$(nproc)
 
-# Copy XCB headers to PREFIX
-cp -r /usr/include/xcb $PREFIX/include
-
-../configure -prefix ${PREFIX} \
+  ../configure -prefix ${PREFIX} \
              -libdir ${PREFIX}/lib \
              -bindir ${PREFIX}/bin \
              -headerdir ${PREFIX}/include/qt \
@@ -62,9 +63,62 @@ cp -r /usr/include/xcb $PREFIX/include
              -xcb \
              -xcb-xlib \
              -bundled-xcb-xinput
+fi
+
+if [[ $(uname) == "Darwin" ]]; then
+  export AR=$(basename ${AR})
+  export RANLIB=$(basename ${RANLIB})
+  export STRIP=$(basename ${STRIP})
+  export OBJDUMP=$(basename ${OBJDUMP})
+  export CC=$(basename ${CC})
+  export CXX=$(basename ${CXX})
+
+  # Let Qt set its own flags and vars
+  for x in OSX_ARCH CFLAGS CXXFLAGS LDFLAGS
+  do
+      unset $x
+  done
+
+  NPROC=$CPU_COUNT
+
+  # Avoid Xcode
+    #cp "${RECIPE_DIR}"/xcrun .
+    #cp "${RECIPE_DIR}"/xcodebuild .
+    # Some test runs 'clang -v', but I do not want to add it as a requirement just for that.
+    #ln -s "${CXX}" ${HOST}-clang || true
+    # For ltcg we cannot use libtool (or at least not the macOS 10.9 system one) due to lack of LLVM bitcode support.
+    #ln -s "${LIBTOOL}" libtool || true
+    # Just in-case our strip is better than the system one.
+    #ln -s "${STRIP}" strip || true
+    #chmod +x ${HOST}-clang libtool strip
+    # Qt passes clang flags to LD (e.g. -stdlib=c++)
+    #export LD=${CXX}
+    #PATH=${PWD}:${PATH}
+ 
+  ../configure -prefix ${PREFIX} \
+             -libdir ${PREFIX}/lib \
+             -bindir ${PREFIX}/bin \
+             -headerdir ${PREFIX}/include/qt \
+             -archdatadir ${PREFIX} \
+             -datadir ${PREFIX} \
+             -I ${PREFIX}/include \
+             -L ${PREFIX}/lib \
+             -R $PREFIX/lib \
+             -opensource \
+             -nomake examples \
+             -nomake tests \
+             -skip qtwebengine \
+             -confirm-license \
+             -system-libjpeg \
+             -system-libpng \
+             -system-zlib \
+             -optimize-size
+             # -sdk macosx10.14
+
+fi
 
 # exit 1
-make -j$(nproc)
+make -j$NPROC
 make install
 
 

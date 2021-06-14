@@ -10,7 +10,7 @@ source:
   sha256: 3a530d1b243b5dec00bc54937455471aaa3e56849d2593edb8ded07228202240
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -67,18 +67,19 @@ requirements:
     - gperf                              # [linux]
     - perl 5.*
     - readline                           # [linux]
+    - llvm                               # [osx]
   host:
     - gtk3
     # - libpng
     - libjpeg-turbo
     - pulseaudio                         # [linux and not aarch64]
-    - gstreamer
+    # - gstreamer                          # [not arm64]
     - pthread-stubs                      # [linux]
     - dbus                               # [linux]
     - fontconfig                         # [linux]
     - freetype                           # [linux]
     - gst-plugins-base                   # [linux]
-    - gstreamer                          # [linux]
+    - gstreamer                          # [not arm64]
     - libglib                            # [linux]
     - libxml2                            # [linux]
     - libxkbcommon                       # [linux]
@@ -100,7 +101,7 @@ requirements:
     - libpng
     - libjpeg-turbo
     - pulseaudio                         # [linux and not aarch64]
-    - gstreamer
+    - gstreamer                          # [not arm64]
 
 # test:
 #   # Some packages might need a `test/commands` key to check CLI.
