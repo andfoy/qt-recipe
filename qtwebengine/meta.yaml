@@ -26,6 +26,10 @@ source:
     patches:
       - 0001-aarch64-sys-state-structs.patch  # [aarch64]
 
+  - url: https://download.qt.io/official_releases/jom/jom.zip  # [win]
+    folder: jom  # [win]
+    md5: f960efa8dc1e99df088d32bc1bc2157c  # [win]
+
 build:
   number: 0
 
