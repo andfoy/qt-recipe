@@ -130,3 +130,6 @@ dmypy.json
 
 # Recipe output
 output/
+
+# Visual Studio files
+.vs/
