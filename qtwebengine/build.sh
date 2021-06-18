@@ -1,6 +1,7 @@
 set -exou
 
 if [[ $(arch) == "aarch64" || $(uname) == "Darwin" ]]; then
+ls
 pushd qtwebengine-chromium
 
 git config user.name 'Anonymous'

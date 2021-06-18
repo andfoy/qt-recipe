@@ -38,7 +38,6 @@ if [[ $(uname) == "Darwin" ]]; then
     sip-build \
     --verbose \
     --confirm-license \
-    --target-dir $SITE_PKGS_PATH \
     --no-make
 
     pushd build
