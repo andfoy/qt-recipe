@@ -23,15 +23,16 @@ source:
   - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
     git_rev: 87-based
     folder: qtwebengine-chromium
-    patches:
+    patches:  # [aarch64 or osx]
       - 0001-aarch64-sys-state-structs.patch  # [aarch64]
+      - 0002-macos-fatal-warnings.patch  # [osx]
 
   - url: https://download.qt.io/official_releases/jom/jom.zip  # [win]
     folder: jom  # [win]
     md5: f960efa8dc1e99df088d32bc1bc2157c  # [win]
 
   - url: https://download.qt.io/development_releases/gnuwin32/gnuwin32.zip  # [win]
-    folder: gnuwin32
+    folder: gnuwin32  # [win]
     sha256: 4a9dc893cc0a1695a16102a42ef47ef2e228652891f4afea67fadd452b63656b  # [win]
 
 build:
