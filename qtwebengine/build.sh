@@ -73,10 +73,10 @@ if [[ $(uname) == "Darwin" ]]; then
         unset $x
     done
 
-    sed '54s/CONFIG = file_copies qmake_use qt warn_on release link_prl/CONFIG = file_copies qmake_use qt warn_off release link_prl/' $PREFIX/mkspecs/features/spec_pre.prf
-    
-    echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
-    echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
+    # sed '54s/CONFIG = file_copies qmake_use qt warn_on release link_prl/CONFIG = file_copies qmake_use qt warn_off release link_prl/' $PREFIX/mkspecs/features/spec_pre.prf
+
+    # echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
+    # echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
     # echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Wextra\", \"\")" >> ../qtwebengine.pro
     # echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Wextra\", \"\")" >> ../qtwebengine.pro
 
@@ -85,7 +85,7 @@ if [[ $(uname) == "Darwin" ]]; then
     # Set QMake prefix to $PREFIX
     qmake -set prefix $PREFIX
 
-    sed -i '' -e 's/-Werror//' $PREFIX/mkspecs/features/qt_module_headers.prf
+    # sed -i '' -e 's/-Werror//' $PREFIX/mkspecs/features/qt_module_headers.prf
 
     qmake QMAKE_LIBDIR=${PREFIX}/lib \
         INCLUDEPATH+="${PREFIX}/include" \
@@ -97,8 +97,8 @@ if [[ $(uname) == "Darwin" ]]; then
         QMAKE_LFLAGS+="-Wno-everything -Wl,-rpath,$PREFIX/lib -L$PREFIX/lib" \
         PKG_CONFIG_EXECUTABLE=$(which pkg-config) \
         ..
-        
-    find . -type f -exec sed -i '' -e 's/-Wl,-fatal_warnings//g' {} +
+
+    # find . -type f -exec sed -i '' -e 's/-Wl,-fatal_warnings//g' {} +
     # sed -i '' -e 's/-Werror//' $PREFIX/mkspecs/features/qt_module_headers.prf
 
     make -j$CPU_COUNT
