@@ -6,8 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: http://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/single/qt-everywhere-src-{{ version }}.tar.xz
-  sha256: 3a530d1b243b5dec00bc54937455471aaa3e56849d2593edb8ded07228202240
+  - url: http://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/single/qt-everywhere-src-{{ version }}.tar.xz
+    sha256: 3a530d1b243b5dec00bc54937455471aaa3e56849d2593edb8ded07228202240
+
+  - url: https://download.qt.io/official_releases/jom/jom.zip  # [win]
+    folder: jom  # [win]
+    md5: f960efa8dc1e99df088d32bc1bc2157c  # [win]
+
 
 build:
   number: 6

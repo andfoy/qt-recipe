@@ -1,1 +1,7 @@
 cdt_name: cos7
+c_compiler:  # [win]
+- vs2019  # [win]
+cxx_compiler:  # [win]
+- vs2019  # [win]
+c_compiler_version: # [win]
+  - 19.28                    # [win]
