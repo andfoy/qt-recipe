@@ -31,7 +31,6 @@ fi
 if [[ $(uname) == "Darwin" ]]; then
     sip-build \
     --verbose \
-    --confirm-license \
     --no-make
 
     pushd build

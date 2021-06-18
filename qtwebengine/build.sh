@@ -83,6 +83,11 @@ if [[ $(uname) == "Darwin" ]]; then
 
     export APPLICATION_EXTENSION_API_ONLY=NO
 
+    EXTRA_FLAGS=""
+    if [[ $(arch) == "arm64" ]]; then
+      EXTRA_FLAGS="QMAKE_APPLE_DEVICE_ARCHS=arm64"
+    fi
+
     # Set QMake prefix to $PREFIX
     qmake -set prefix $PREFIX
 
@@ -95,6 +100,7 @@ if [[ $(uname) == "Darwin" ]]; then
         QMAKE_CXXFLAGS_WARN_ON="-w" \
         QMAKE_CFLAGS+="-Wno-everything" \
         QMAKE_CXXFLAGS+="-Wno-everything" \
+        $EXTRA_FLAGS \
         QMAKE_LFLAGS+="-Wno-everything -Wl,-rpath,$PREFIX/lib -L$PREFIX/lib" \
         PKG_CONFIG_EXECUTABLE=$(which pkg-config) \
         ..

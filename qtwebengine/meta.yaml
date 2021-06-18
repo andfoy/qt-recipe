@@ -100,7 +100,7 @@ requirements:
     # - libpng
     - libjpeg-turbo
     - pulseaudio                         # [linux and not aarch64]
-    - gstreamer
+    - gstreamer                          # [not arm64]
     - pthread-stubs                      # [linux]
     - dbus                               # [linux]
     - fontconfig                         # [linux]
@@ -130,7 +130,7 @@ requirements:
     - libpng
     - libjpeg-turbo
     - pulseaudio                         # [linux and not aarch64]
-    - gstreamer
+    - gstreamer                          # [not arm64]
     - qt >=5.15.2
 
 # test:

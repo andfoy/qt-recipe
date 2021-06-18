@@ -6,8 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}{{ version[0] }}/{{ name }}{{ version[0] }}-{{ version }}.tar.gz
-  sha256: 2a69597e0dd11caabe75fae133feca66387819fc9bc050f547e5551bce97e5be
+  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}{{ version[0] }}/{{ name }}{{ version[0] }}-{{ version }}.tar.gz
+    sha256: 2a69597e0dd11caabe75fae133feca66387819fc9bc050f547e5551bce97e5be
+  - url: https://download.qt.io/official_releases/jom/jom.zip  # [win]
+    folder: jom  # [win]
+    md5: f960efa8dc1e99df088d32bc1bc2157c  # [win]
 
 build:
   number: 1
