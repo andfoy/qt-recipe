@@ -26,6 +26,7 @@ source:
     patches:  # [aarch64 or osx]
       - 0001-aarch64-sys-state-structs.patch  # [aarch64]
       - 0002-macos-fatal-warnings.patch  # [osx]
+      - 0003-macos-arm64-chromium.patch  # [osx and arm64]
 
   - url: https://download.qt.io/official_releases/jom/jom.zip  # [win]
     folder: jom  # [win]
