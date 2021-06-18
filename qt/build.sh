@@ -112,7 +112,9 @@ if [[ $(uname) == "Darwin" ]]; then
              -system-libjpeg \
              -system-libpng \
              -system-zlib \
-             -optimize-size
+             -optimize-size \
+             -release \
+             -no-framework
              # -sdk macosx10.14
 
 fi

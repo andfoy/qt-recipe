@@ -1,5 +1,7 @@
 setlocal enableextensions enabledelayedexpansion
 
+git config --system core.longpaths true
+
 set LIBRARY_PATHS=-I %LIBRARY_INC%
 
 pushd %LIBRARY_INC%
@@ -10,6 +12,7 @@ popd
 endlocal
 
 set PATH=%cd%\jom;%PATH%
+SET PATH=%cd%\gnuwin32\gnuwin32\bin;%cd%\gnuwin32\bin;%PATH%
 
 mkdir b
 pushd b
@@ -20,7 +23,8 @@ where jom
 qmake -set prefix %LIBRARY_PREFIX%
 
 qmake QMAKE_LIBDIR=%LIBRARY_LIB% ^
-      INCLUDEPATH+="%LIBRARY_INC%" \
+      QMAKE_BINDIR=%LIBRARY_BIN% ^
+      INCLUDEPATH+="%LIBRARY_INC%" ^
       ..
 
 echo on
