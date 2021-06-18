@@ -10,8 +10,15 @@ source:
   sha256: f069d550dd819609e019e5dc58fc5193e081c7f3fb4f7dc8f9be734e34d4e56e
 
 build:
-  number: 1
+  number: 2
   script: "{{ PYTHON }} -m pip install . -vv"
+  entry_points:
+    - sip-distinfo = sipbuild.distinfo.main:main
+    - sip-module = sipbuild.module.main:main
+    - sip-build = sipbuild.tools.build:main
+    - sip-install = sipbuild.tools.install:main
+    - sip-sdist = sipbuild.tools.sdist:main
+    - sip-wheel = sipbuild.tools.wheel:main
 
 requirements:
   build:
@@ -33,6 +40,7 @@ test:
     - pip
   commands:
     - pip check
+    - sip-build --help
 
 about:
   home: https://www.riverbankcomputing.com/software/sip/
