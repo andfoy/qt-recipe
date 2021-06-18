@@ -73,14 +73,33 @@ if [[ $(uname) == "Darwin" ]]; then
         unset $x
     done
 
+    sed '54s/CONFIG = file_copies qmake_use qt warn_on release link_prl/CONFIG = file_copies qmake_use qt warn_off release link_prl/' $PREFIX/mkspecs/features/spec_pre.prf
+    
+    echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
+    echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
+    # echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Wextra\", \"\")" >> ../qtwebengine.pro
+    # echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Wextra\", \"\")" >> ../qtwebengine.pro
+
+    export APPLICATION_EXTENSION_API_ONLY=NO
+
     # Set QMake prefix to $PREFIX
     qmake -set prefix $PREFIX
 
+    sed -i '' -e 's/-Werror//' $PREFIX/mkspecs/features/qt_module_headers.prf
+
     qmake QMAKE_LIBDIR=${PREFIX}/lib \
-        QMAKE_LFLAGS+="-Wl,-rpath,$PREFIX/lib -Wl,$PREFIX/lib -L$PREFIX/lib" \
         INCLUDEPATH+="${PREFIX}/include" \
+        CONFIG+="warn_off" \
+        QMAKE_CFLAGS_WARN_ON="-w" \
+        QMAKE_CXXFLAGS_WARN_ON="-w" \
+        QMAKE_CFLAGS+="-Wno-everything" \
+        QMAKE_CXXFLAGS+="-Wno-everything" \
+        QMAKE_LFLAGS+="-Wno-everything -Wl,-rpath,$PREFIX/lib -L$PREFIX/lib" \
         PKG_CONFIG_EXECUTABLE=$(which pkg-config) \
         ..
+        
+    find . -type f -exec sed -i '' -e 's/-Wl,-fatal_warnings//g' {} +
+    # sed -i '' -e 's/-Werror//' $PREFIX/mkspecs/features/qt_module_headers.prf
 
     make -j$CPU_COUNT
     make install
