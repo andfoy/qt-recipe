@@ -25,6 +25,7 @@ source:
     folder: qtwebengine-chromium
     patches:
       - 0001-aarch64-sys-state-structs.patch  # [aarch64]
+      - 0002-macos-fatal-warnings.patch  # [osx]
 
   - url: https://download.qt.io/official_releases/jom/jom.zip  # [win]
     folder: jom  # [win]
