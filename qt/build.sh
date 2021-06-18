@@ -81,6 +81,11 @@ if [[ $(uname) == "Darwin" ]]; then
 
   NPROC=$CPU_COUNT
 
+  PLATFORM=""
+  if [[ $(arch) == "arm64" ]]; then
+    PLATFORM="-device-option QMAKE_APPLE_DEVICE_ARCHS=arm64"
+  fi
+ 
   # Avoid Xcode
     #cp "${RECIPE_DIR}"/xcrun .
     #cp "${RECIPE_DIR}"/xcodebuild .
@@ -101,6 +106,7 @@ if [[ $(uname) == "Darwin" ]]; then
              -headerdir ${PREFIX}/include/qt \
              -archdatadir ${PREFIX} \
              -datadir ${PREFIX} \
+             $PLATFORM \
              -I ${PREFIX}/include \
              -L ${PREFIX}/lib \
              -R $PREFIX/lib \
