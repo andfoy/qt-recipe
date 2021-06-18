@@ -1,11 +1,12 @@
 diff --git a/chromium/build/config/BUILDCONFIG.gn b/chromium/build/config/BUILDCONFIG.gn
-index 3815dd6f941..716f1439be4 100644
+index 3815dd6f941..67c8a7cdeb1 100644
 --- a/chromium/build/config/BUILDCONFIG.gn
 +++ b/chromium/build/config/BUILDCONFIG.gn
-@@ -50,6 +50,8 @@ if (target_os == "") {
+@@ -50,6 +50,9 @@ if (target_os == "") {
    target_os = host_os
  }
  
++current_cpu = "arm64"
 +target_cpu = "arm64"
 +
  if (target_cpu == "") {
