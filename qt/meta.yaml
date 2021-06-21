@@ -15,7 +15,7 @@ source:
 
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   build:
@@ -101,6 +101,7 @@ requirements:
     - postgresql                         # [not win]
     - zlib
     - libxcb                             # [linux]
+    - openssl                            # [win]
   run:
     - gtk3
     - libpng
