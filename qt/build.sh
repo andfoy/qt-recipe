@@ -85,7 +85,7 @@ if [[ $(uname) == "Darwin" ]]; then
   if [[ $(arch) == "arm64" ]]; then
     PLATFORM="-device-option QMAKE_APPLE_DEVICE_ARCHS=arm64"
   fi
- 
+
   # Avoid Xcode
     #cp "${RECIPE_DIR}"/xcrun .
     #cp "${RECIPE_DIR}"/xcodebuild .
@@ -99,7 +99,7 @@ if [[ $(uname) == "Darwin" ]]; then
     # Qt passes clang flags to LD (e.g. -stdlib=c++)
     #export LD=${CXX}
     #PATH=${PWD}:${PATH}
- 
+
   ../configure -prefix ${PREFIX} \
              -libdir ${PREFIX}/lib \
              -bindir ${PREFIX}/bin \
