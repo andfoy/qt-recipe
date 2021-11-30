@@ -1,8 +1,12 @@
 set -exou
 
 if [[ $(arch) == "aarch64" || $(uname) == "Darwin" ]]; then
-ls
 pushd qtwebengine-chromium
+
+# Ensure that Chromium is built using the correct sysroot in Mac
+awk 'NR==77{$0="    rebase_path(\"'$CONDA_BUILD_SYSROOT'\", root_build_dir),"}1' chromium/build/config/mac/BUILD.gn > chromium/build/config/mac/BUILD.gn.tmp
+rm chromium/build/config/mac/BUILD.gn
+mv chromium/build/config/mac/BUILD.gn.tmp chromium/build/config/mac/BUILD.gn
 
 git config user.name 'Anonymous'
 git config user.email '<>'
@@ -74,12 +78,18 @@ if [[ $(uname) == "Darwin" ]]; then
         unset $x
     done
 
-    # sed '54s/CONFIG = file_copies qmake_use qt warn_on release link_prl/CONFIG = file_copies qmake_use qt warn_off release link_prl/' $PREFIX/mkspecs/features/spec_pre.prf
-
-    # echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
-    # echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Werror\", \"\")" >> ../qtwebengine.pro
-    # echo "QMAKE_CFLAGS = \$\$replace(QMAKE_CFLAGS, \"-Wextra\", \"\")" >> ../qtwebengine.pro
-    # echo "QMAKE_CXXFLAGS = \$\$replace(QMAKE_CXXFLAGS, \"-Wextra\", \"\")" >> ../qtwebengine.pro
+    # Some test runs 'clang -v', but I do not want to add it as a requirement just for that.
+    ln -s "${CXX}" ${HOST}-clang || true
+    # For ltcg we cannot use libtool (or at least not the macOS 10.9 system one) due to lack of LLVM bitcode support.
+    ln -s "${LIBTOOL}" libtool || true
+    # Just in-case our strip is better than the system one.
+    ln -s "${STRIP}" strip || true
+    chmod +x ${HOST}-clang libtool strip
+    # Qt passes clang flags to LD (e.g. -stdlib=c++)
+    export LD=${CXX}
+    PATH=${PWD}:${PATH}
+    # Use xcode-avoidance scripts
+    PATH=$PREFIX/bin/xc-avoidance:$PATH
 
     export APPLICATION_EXTENSION_API_ONLY=NO
 

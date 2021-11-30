@@ -23,11 +23,12 @@ source:
   - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
     git_rev: 87-based
     folder: qtwebengine-chromium
-    patches:                                             # [aarch64 or osx]
-      - patches/0001-aarch64-sys-state-structs.patch     # [aarch64]
-      - patches/0002-macos-fatal-warnings.patch          # [osx]
-      - patches/0003-macos-arm64-chromium.patch          # [osx and arm64]
-      - patches/0004-macos-arm64-float16-conv.patch      # [osx and arm64]
+    patches:                                               # [aarch64 or osx]
+      - patches/0001-aarch64-sys-state-structs.patch       # [aarch64]
+      - patches/0002-macos-fatal-warnings.patch            # [osx]
+      - patches/0003-macos-arm64-chromium.patch            # [osx and arm64]
+      - patches/0004-macos-arm64-float16-conv.patch        # [osx and arm64]
+      - patches/0005-macos-use-CONDA_BUILD_SYSROOT.patch   # [osx]
 
   - url: https://download.qt.io/development_releases/gnuwin32/gnuwin32.zip  # [win]
     folder: gnuwin32  # [win]
