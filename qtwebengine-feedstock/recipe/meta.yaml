@@ -97,7 +97,7 @@ requirements:
   host:
     - gtk3
     # - libpng
-    - libjpeg-turbo
+    - jpeg
     - pulseaudio                         # [linux and not aarch64]
     - gstreamer                          # [not arm64]
     - pthread-stubs                      # [linux]
@@ -171,6 +171,7 @@ test:
     - test/main-qtwebengine.cpp
     - test/qml.qrc
     - test/qrc_qml.cpp
+    - test/main.qml
     - test/qtwebengine.pro
 
 about:
