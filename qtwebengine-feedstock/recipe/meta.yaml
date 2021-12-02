@@ -19,6 +19,8 @@ source:
 
   - git_url: https://code.qt.io/qt/qtwebengine.git
     git_rev: v{{ version }}-lts
+    patches:
+      - patches/0001-Add-use_system_webp-flag-to-gn_args.patch
 
   - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
     git_rev: 87-based
