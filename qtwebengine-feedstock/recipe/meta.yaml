@@ -127,6 +127,7 @@ requirements:
   run:
     - {{ pin_compatible("nodejs") }}
     - qt >=5.15.2
+    - libwebp
 
 test:
   requires:
