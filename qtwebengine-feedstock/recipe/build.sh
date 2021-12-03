@@ -46,8 +46,7 @@ if [[ $(uname) == "Linux" ]]; then
 
     which pkg-config
     export PKG_CONFIG_EXECUTABLE=$(which pkg-config)
-
-    $(gcc -print-file-name=libc.so.6)
+    export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig/:$BUILD_PREFIX/lib/pkgconfig/
 
     # Set QMake prefix to $PREFIX
     qmake -set prefix $PREFIX
@@ -121,3 +120,10 @@ if [[ $(uname) == "Darwin" ]]; then
     make -j$CPU_COUNT
     make install
 fi
+
+# Post build setup
+# ----------------
+# Remove static libraries that are not part of the Qt SDK.
+pushd "${PREFIX}"/lib > /dev/null
+    find . -name "*.a" -and -not -name "libQt*" -exec rm -f {} \;
+popd > /dev/null

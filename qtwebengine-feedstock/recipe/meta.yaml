@@ -98,11 +98,9 @@ requirements:
     - python 2.7*                        # [win]
     - jom                                # [win]
   host:
-    - gtk3
-    # - libpng
     - jpeg
-    - pulseaudio                         # [linux and not aarch64]
-    - gstreamer                          # [not arm64]
+    - pulseaudio                         # [linux]
+    - gstreamer
     - pthread-stubs                      # [linux]
     - dbus                               # [linux]
     - fontconfig                         # [linux]
@@ -127,12 +125,7 @@ requirements:
     - libwebp
     - openssl                            # [win]
   run:
-    - gtk3
-    - libpng
-    - libjpeg-turbo
     - {{ pin_compatible("nodejs") }}
-    - pulseaudio                         # [linux and not aarch64]
-    - gstreamer                          # [not arm64]
     - qt >=5.15.2
 
 test:
