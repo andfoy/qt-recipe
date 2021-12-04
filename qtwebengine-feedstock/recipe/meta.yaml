@@ -19,19 +19,16 @@ source:
 
   - git_url: https://code.qt.io/qt/qtwebengine.git
     git_rev: v{{ version }}-lts
-    patches:
-      - patches/0001-Add-use_system_webp-flag-to-gn_args.patch
 
   - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
     git_rev: 87-based
     folder: qtwebengine-chromium
-    patches:
+    patches:                                               # [osx or aarch64]
       - patches/0001-aarch64-sys-state-structs.patch       # [aarch64]
       - patches/0002-macos-fatal-warnings.patch            # [osx]
-      - patches/0003-macos-arm64-chromium.patch            # [osx and arm64]
-      - patches/0004-macos-arm64-float16-conv.patch        # [osx and arm64]
+      - patches/0003-macos-arm64-chromium.patch            # [arm64]
+      - patches/0004-macos-arm64-float16-conv.patch        # [arm64]
       - patches/0005-macos-use-CONDA_BUILD_SYSROOT.patch   # [osx]
-      - patches/0006-Enable-system-libwebp.patch
 
   - url: https://download.qt.io/development_releases/gnuwin32/gnuwin32.zip  # [win]
     folder: gnuwin32  # [win]
