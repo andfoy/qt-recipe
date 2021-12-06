@@ -16,12 +16,8 @@ gstreamer:
 - '1.18'
 icu:
 - '68'
-jpeg:
-- '9'
 libiconv:
 - '1.16'
-libjpeg_turbo:
-- '2'
 libpng:
 - '1.6'
 libwebp:
@@ -31,12 +27,8 @@ nodejs:
 openssl:
 - 1.1.1
 pin_run_as_build:
-  jpeg:
-    max_pin: x
   libiconv:
     max_pin: x.x
-  libjpeg_turbo:
-    max_pin: x
   libpng:
     max_pin: x.x
   sqlite:
