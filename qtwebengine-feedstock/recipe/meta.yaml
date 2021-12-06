@@ -8,13 +8,11 @@ package:
 source:
   - git_url: https://code.qt.io/qt/qtwebengine.git
     git_rev: v{{ version }}-lts
-    patches:
-      - patches/0006-Add-use_system_libjpeg-to-gn-args.patch
 
   - git_url: https://code.qt.io/qt/qtwebengine-chromium.git
     git_rev: 87-based
     folder: qtwebengine-chromium
-    patches:                                               # [osx or aarch64]
+    patches:
       - patches/0001-aarch64-sys-state-structs.patch       # [aarch64]
       - patches/0002-macos-fatal-warnings.patch            # [osx]
       - patches/0003-macos-arm64-chromium.patch            # [arm64]
@@ -86,7 +84,13 @@ requirements:
     - python 2.7*                        # [win]
     - jom                                # [win]
   host:
-    - jpeg
+    # Chromium expects libjpeg-turbo as their main libjpeg reference and therefore
+    # it will use an statically-linked version to it whilst
+    # https://github.com/conda-forge/conda-forge.github.io/issues/673 is fixed.
+    # Most internal dependencies such as SKIA use turbo-jpeg specific functions
+    # and constants, and therefore trying to patch them would cause unexpected
+    # errors or would be impossible.
+    # - jpeg
     - pulseaudio                         # [linux]
     - gstreamer
     - pthread-stubs                      # [linux]
