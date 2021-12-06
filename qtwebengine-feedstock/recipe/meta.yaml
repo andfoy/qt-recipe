@@ -83,7 +83,7 @@ requirements:
     - readline                           # [linux]
     - python 2.7*                        # [win]
     - jom                                # [win]
-    - nodejs
+    - nodejs >=16
   host:
     # Chromium expects libjpeg-turbo as their main libjpeg reference and therefore
     # it will use an statically-linked version to it whilst
@@ -114,7 +114,6 @@ requirements:
     - zlib
     - libxcb                             # [linux]
     - qt >=5.15.2
-    - nodejs
     - libwebp
     - openssl                            # [win]
   run:

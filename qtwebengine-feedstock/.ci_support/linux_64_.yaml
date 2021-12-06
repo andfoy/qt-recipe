@@ -38,8 +38,6 @@ libwebp:
 - '1'
 libxml2:
 - '2.9'
-nodejs:
-- '16'
 nspr:
 - '4'
 nss:

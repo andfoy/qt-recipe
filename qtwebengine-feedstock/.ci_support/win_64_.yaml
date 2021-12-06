@@ -22,8 +22,6 @@ libpng:
 - '1.6'
 libwebp:
 - '1'
-nodejs:
-- '16'
 openssl:
 - 1.1.1
 pin_run_as_build:
