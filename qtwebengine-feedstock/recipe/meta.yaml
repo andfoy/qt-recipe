@@ -113,11 +113,10 @@ requirements:
     - sqlite
     - zlib
     - libxcb                             # [linux]
-    - qt >=5.15.2
+    - qt-main
     - libwebp
     - openssl                            # [win]
   run:
-    - qt >=5.15.2
     - libwebp
 
 test:
