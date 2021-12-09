@@ -1,4 +1,4 @@
-{% set name = "qtwebengine" %}
+{% set name = "qt-webengine" %}
 {% set version = "5.15.4" %}
 
 package:
@@ -28,18 +28,17 @@ build:
 
 requirements:
   build:
-    # If your project compiles code (such as a C extension) then add the required compilers as separate entries here.
-    # Compilers are named 'c', 'cxx' and 'fortran'.
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}  # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
-    - {{ cdt('libxext') }}     # [linux]
-    - {{ cdt('alsa-lib-devel') }}    # [linux]
-    - {{ cdt('cups-devel') }}    # [linux]
+    - sysroot_linux-64 2.17              # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+    - {{ cdt('libselinux') }}            # [linux]
+    - {{ cdt('libxdamage') }}            # [linux]
+    - {{ cdt('libxxf86vm') }}            # [linux]
+    - {{ cdt('libxext') }}               # [linux]
+    - {{ cdt('alsa-lib-devel') }}        # [linux]
+    - {{ cdt('cups-devel') }}            # [linux]
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
     - {{ cdt('libx11-devel') }}          # [linux]
     - {{ cdt('libxext-devel') }}         # [linux]
@@ -69,8 +68,6 @@ requirements:
     - {{ cdt('cups-devel') }}            # [linux]
     - {{ cdt('libxcb') }}                # [linux]
     - {{ cdt('expat-devel') }}           # [linux]
-    # - {{ cdt('pcre') }}                  # [linux and cdt_name != 'cos6']
-    # - {{ cdt('libglvnd-glx') }}          # [linux and cdt_name != 'cos6']
     - pkg-config                         # [unix]
     - make                               # [unix]
     - cmake
@@ -172,7 +169,12 @@ about:
 
 extra:
   recipe-maintainers:
-    # GitHub IDs for maintainers of the recipe.
-    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
-    - LisaSimpson
-    - LandoCalrissian
+    - andfoy
+    - ccordoba12
+    - duncanmmacleod
+    - gillins
+    - mingwandroid
+    - msarahan
+    - ocefpaf
+    - stuarteberg
+    - Tobias-Fischer
