@@ -2,10 +2,3 @@ MACOSX_DEPLOYMENT_TARGET:  # [osx and x86_64]
   - '10.13'                # [osx and x86_64]
 MACOSX_SDK_VERSION:        # [osx and x86_64]
   - '10.14'                # [osx and x86_64]
-# bugs with gcc 9.4 stopped us from
-# using the latest version of gcc 9 available
-# at the time in conda-forge
-c_compiler_version:        # [linux and aarch64]
-  - 11                     # [linux and aarch64]
-cxx_compiler_version:      # [linux and aarch64]
-  - 11                     # [linux and aarch64]
