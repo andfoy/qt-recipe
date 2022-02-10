@@ -106,8 +106,8 @@ requirements:
     - dbus                               # [linux]
     - fontconfig                         # [linux]
     - freetype                           # [linux]
-    - gst-plugins-base                   # [linux]
-    - gstreamer                          # [linux]
+    - gst-plugins-base
+    - gstreamer
     - libglib                            # [linux]
     - libxml2                            # [linux]
     - libxkbcommon                       # [linux]
@@ -131,6 +131,7 @@ requirements:
     - gtk3
     - libpng
     - libjpeg-turbo
+    - {{ pin_compatible("nodejs") }}
     - pulseaudio                         # [linux and not aarch64]
     - gstreamer                          # [not arm64]
     - qt >=5.15.2
