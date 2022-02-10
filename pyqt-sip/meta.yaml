@@ -10,22 +10,23 @@ source:
   sha256: d3e4489d7c2b0ece9d203ae66e573939f7f60d4d29e089c9f11daa17cfeaae32
 
 build:
-  # noarch: python
-  number: 1
+  number: 0
   script: "{{ PYTHON }} -m pip install . -vv"  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
-    - python >=3.6
+    - python
     - setuptools
     - wheel
     - pip
   run:
-    - python >=3.6
-    - sip >=6.1.0
+    - python
+    - sip
     - packaging
     - toml
 
@@ -46,7 +47,5 @@ about:
 
 extra:
   recipe-maintainers:
-    # GitHub IDs for maintainers of the recipe.
-    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
-    - LisaSimpson
-    - LandoCalrissian
+    - andfoy
+    - ccordoba12
