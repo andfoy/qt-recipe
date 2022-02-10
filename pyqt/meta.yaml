@@ -69,7 +69,7 @@ requirements:
   run:
     - python
     - qt-main
-    - pyqt5-sip >=12.9.0
+    - pyqt5-sip
 
 test:
   imports:
