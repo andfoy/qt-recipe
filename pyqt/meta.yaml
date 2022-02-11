@@ -64,6 +64,7 @@ requirements:
     - pip
     - sip
     - toml
+    - pyqt-builder
     - packaging
     - qt-main
   run:
