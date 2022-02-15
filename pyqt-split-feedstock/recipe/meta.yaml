@@ -140,7 +140,7 @@ about:
   home: https://www.riverbankcomputing.com/software/pyqt/
   license: GPL-3.0-only
   license_family: GPL
-  license_file: LICENSE
+  license_file: pyqt/LICENSE
   summary: 'Python bindings for the Qt cross platform application toolkit'
   # The remaining entries in this section are optional, but recommended.
   description: |
