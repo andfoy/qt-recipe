@@ -33,6 +33,12 @@ if [[ $(uname) == "Linux" ]]; then
     --no-make
 
     pushd build
+
+    SYSROOT_FLAGS="-L ${BUILD_PREFIX}/${HOST}/sysroot/usr/lib64 -L ${BUILD_PREFIX}/${HOST}/sysroot/usr/lib"
+    export CFLAGS="$SYSROOT_FLAGS $CFLAGS"
+    export CXXFLAGS="$SYSROOT_FLAGS $CXXFLAGS"
+    export LDFLAGS="$SYSROOT_FLAGS $LDFLAGS"
+
     CPATH=$PREFIX/include make -j$CPU_COUNT
     make install
 fi
