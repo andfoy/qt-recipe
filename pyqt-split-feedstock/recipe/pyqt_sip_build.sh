@@ -1,5 +1,7 @@
 set -exou
 
+pushd pyqt_sip
+
 if [[ $(uname) == "Linux" ]]; then
     USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
     echo USED_BUILD_PREFIX=${BUILD_PREFIX}
