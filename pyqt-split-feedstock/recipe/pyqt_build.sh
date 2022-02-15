@@ -1,6 +1,7 @@
 set -exou
 
 pushd pyqt
+cp LICENSE ..
 
 if [[ $(uname) == "Linux" ]]; then
     USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
