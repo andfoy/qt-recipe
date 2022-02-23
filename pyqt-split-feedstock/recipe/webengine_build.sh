@@ -1,7 +1,6 @@
 set -exou
 
-pushd pyqt
-cp LICENSE ..
+pushd pyqt_webengine
 
 if [[ $(uname) == "Linux" ]]; then
     USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
@@ -21,24 +20,16 @@ if [[ $(uname) == "Linux" ]]; then
 
     sip-build \
     --verbose \
-    --confirm-license \
     --no-make
 
     pushd build
-
-    SYSROOT_FLAGS="-L ${BUILD_PREFIX}/${HOST}/sysroot/usr/lib64 -L ${BUILD_PREFIX}/${HOST}/sysroot/usr/lib"
-    export CFLAGS="$SYSROOT_FLAGS $CFLAGS"
-    export CXXFLAGS="$SYSROOT_FLAGS $CXXFLAGS"
-    export LDFLAGS="$SYSROOT_FLAGS $LDFLAGS"
-
-    CPATH=$PREFIX/include make -j$CPU_COUNT
+    CPATH=$PREFIX/include make -j$(nproc)
     make install
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
     sip-build \
     --verbose \
-    --confirm-license \
     --no-make
 
     pushd build
