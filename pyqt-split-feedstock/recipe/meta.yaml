@@ -197,10 +197,12 @@ outputs:
         - pyqt-builder
         - packaging
         - qt-main
+        - qt-webengine
         - pyqt-impl
       run:
         - python
         - qt-main
+        - qt-webengine
         - pyqt5-sip
         - {{ pin_subpackage('pyqt-impl', exact=True) }}
       test:
