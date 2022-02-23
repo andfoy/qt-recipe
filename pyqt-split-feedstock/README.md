@@ -150,6 +150,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pyqt-green.svg)](https://anaconda.org/conda-forge/pyqt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyqt.svg)](https://anaconda.org/conda-forge/pyqt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyqt.svg)](https://anaconda.org/conda-forge/pyqt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyqt.svg)](https://anaconda.org/conda-forge/pyqt) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pyqt--impl-green.svg)](https://anaconda.org/conda-forge/pyqt-impl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyqt-impl.svg)](https://anaconda.org/conda-forge/pyqt-impl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyqt-impl.svg)](https://anaconda.org/conda-forge/pyqt-impl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyqt-impl.svg)](https://anaconda.org/conda-forge/pyqt-impl) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pyqt5--sip-green.svg)](https://anaconda.org/conda-forge/pyqt5-sip) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyqt5-sip.svg)](https://anaconda.org/conda-forge/pyqt5-sip) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyqt5-sip.svg)](https://anaconda.org/conda-forge/pyqt5-sip) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyqt5-sip.svg)](https://anaconda.org/conda-forge/pyqt5-sip) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pyqtwebengine-green.svg)](https://anaconda.org/conda-forge/pyqtwebengine) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyqtwebengine.svg)](https://anaconda.org/conda-forge/pyqtwebengine) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyqtwebengine.svg)](https://anaconda.org/conda-forge/pyqtwebengine) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyqtwebengine.svg)](https://anaconda.org/conda-forge/pyqtwebengine) |
 
 Installing pyqt-split
 =====================
@@ -161,10 +162,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pyqt, pyqt-impl, pyqt5-sip` can be installed with:
+Once the `conda-forge` channel has been enabled, `pyqt, pyqt-impl, pyqt5-sip, pyqtwebengine` can be installed with:
 
 ```
-conda install pyqt pyqt-impl pyqt5-sip
+conda install pyqt pyqt-impl pyqt5-sip pyqtwebengine
 ```
 
 It is possible to list all of the versions of `pyqt` available on your platform with:
