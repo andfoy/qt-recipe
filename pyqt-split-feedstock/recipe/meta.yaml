@@ -123,14 +123,14 @@ outputs:
         - python
         - qt-main
         - pyqt5-sip
-      test:
-        imports:
-          - PyQt5
-          # - simplejson.tests
-        requires:
-          - pip
-        commands:
-          - pip check
+    test:
+      imports:
+        - PyQt5
+        # - simplejson.tests
+      requires:
+        - pip
+      commands:
+        - pip check
 
   - name: {{ webengine_name|lower }}
     version: {{ version }}
@@ -205,13 +205,13 @@ outputs:
         - qt-webengine
         - pyqt5-sip
         - {{ pin_subpackage('pyqt-impl', exact=True) }}
-      test:
-        imports:
-          - PyQt5.QtWebEngineWidgets
-        requires:
-          - pip
-        commands:
-          - pip check
+    test:
+      imports:
+        - PyQt5.QtWebEngineWidgets
+      requires:
+        - pip
+      commands:
+        - pip check
 
   - name: {{ name|lower }}
     build:
