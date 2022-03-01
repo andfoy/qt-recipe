@@ -36,12 +36,32 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 if [[ $(uname) == "Darwin" ]]; then
-    sip-build \
+    SIP_COMMAND="sip-build"
+    EXTRA_FLAGS=""
+
+    # Use xcode-avoidance scripts
+    export PATH=$PREFIX/bin/xc-avoidance:$PATH
+
+    if [[ "${target_platform}" == "osx-arm64" ]]; then
+      SIP_COMMAND="$BUILD_PREFIX/bin/python -m sipbuild.tools.build"
+      SITE_PKGS_PATH=$($PREFIX/bin/python -c 'import site;print(site.getsitepackages()[0])')
+      EXTRA_FLAGS="--target-dir $SITE_PKGS_PATH"
+    fi
+
+    $SIP_COMMAND \
     --verbose \
     --confirm-license \
-    --no-make
+    --no-make \
+    $EXTRA_FLAGS
 
     pushd build
+    if [[ "${target_platform}" == "osx-arm64" ]]; then
+      # Make sure BUILD_PREFIX sip-distinfo is called instead of the HOST one
+      cat Makefile | sed -r 's|\t(.*)sip-distinfo(.*)|\t'$BUILD_PREFIX/bin/python' -m sipbuild.distinfo.main \2|' > Makefile.temp
+      rm Makefile
+      mv Makefile.temp Makefile
+    fi
+
     CPATH=$PREFIX/include make -j$CPU_COUNT
     make install
 fi

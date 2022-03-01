@@ -110,13 +110,15 @@ outputs:
         - jom                                # [win]
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - pyqt-builder                           # [build_platform != target_platform]
+        - sip                                    # [build_platform != target_platform]
         - make
       host:
         - python
         - pip
-        - sip
+        - sip                                    # [build_platform == target_platform]
         - toml
-        - pyqt-builder
+        - pyqt-builder                           # [build_platform == target_platform]
         - packaging
         - qt-main
       run:
