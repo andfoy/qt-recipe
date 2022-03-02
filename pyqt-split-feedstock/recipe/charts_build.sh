@@ -23,7 +23,7 @@ if [[ $(uname) == "Linux" ]]; then
     --no-make
 
     pushd build
-    CPATH=$PREFIX/include make -jCPU_COUNT
+    CPATH=$PREFIX/include make -j$CPU_COUNT
     make install
 fi
 
