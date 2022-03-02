@@ -33,7 +33,7 @@ source:
     folder: pyqt_charts
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ sip_name|lower }}
