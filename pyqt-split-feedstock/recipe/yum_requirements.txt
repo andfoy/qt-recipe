@@ -1,8 +1,8 @@
 libX11
 libXext
 libXrender
-mesa-libgl
-mesa-libegl
+mesa-libGL
+mesa-libEGL
 mesa-dri-drivers
 libXau
 alsa-lib
@@ -14,7 +14,7 @@ libXcursor
 libXi
 libXrandr
 pciutils
-libXScrnsaver
+libXScrnSaver
 libXtst
 libselinux
 libXdamage
