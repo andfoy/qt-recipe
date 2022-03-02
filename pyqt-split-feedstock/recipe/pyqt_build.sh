@@ -42,7 +42,7 @@ if [[ $(uname) == "Darwin" ]]; then
     # Use xcode-avoidance scripts
     export PATH=$PREFIX/bin/xc-avoidance:$PATH
 
-    if [[ "${target_platform}" == "osx-arm64" ]]; then
+    if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" ]]; then
       SIP_COMMAND="$BUILD_PREFIX/bin/python -m sipbuild.tools.build"
       SITE_PKGS_PATH=$($PREFIX/bin/python -c 'import site;print(site.getsitepackages()[0])')
       EXTRA_FLAGS="--target-dir $SITE_PKGS_PATH"
@@ -55,7 +55,8 @@ if [[ $(uname) == "Darwin" ]]; then
     $EXTRA_FLAGS
 
     pushd build
-    if [[ "${target_platform}" == "osx-arm64" ]]; then
+
+    if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" ]]; then
       # Make sure BUILD_PREFIX sip-distinfo is called instead of the HOST one
       cat Makefile | sed -r 's|\t(.*)sip-distinfo(.*)|\t'$BUILD_PREFIX/bin/python' -m sipbuild.distinfo.main \2|' > Makefile.temp
       rm Makefile
