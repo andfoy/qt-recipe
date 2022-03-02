@@ -291,7 +291,6 @@ outputs:
         - pyqt-builder                           # [build_platform == target_platform]
         - packaging
         - qt-main
-        - qt-webengine
         - pyqt-impl
       run:
         - python
