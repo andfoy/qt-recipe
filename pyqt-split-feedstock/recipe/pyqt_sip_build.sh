@@ -19,4 +19,4 @@ if [[ $(uname) == "Linux" ]]; then
     export PATH=${PWD}:${PATH}
 fi
 
-$PYTHON -m pip install . -vv
+$PYTHON setup.py install
