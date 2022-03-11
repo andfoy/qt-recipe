@@ -127,6 +127,8 @@ outputs:
         - pyqt-builder                           # [build_platform == target_platform]
         - packaging
         - qt-main
+        - {{ cdt('mesa-libgl-devel') }}          # [linux]
+        - {{ cdt('mesa-libegl-devel') }}         # [linux]
       run:
         - python
         - {{ pin_compatible("qt-main", max_pin="x.x") }}
@@ -226,6 +228,8 @@ outputs:
         - qt-main
         - qt-webengine
         - pyqt-impl
+        - {{ cdt('mesa-libgl-devel') }}          # [linux]
+        - {{ cdt('mesa-libegl-devel') }}         # [linux]
       run:
         - python
         - {{ pin_compatible("qt-main", max_pin="x.x") }}
@@ -305,6 +309,8 @@ outputs:
         - packaging
         - qt-main
         - pyqt-impl
+        - {{ cdt('mesa-libgl-devel') }}          # [linux]
+        - {{ cdt('mesa-libegl-devel') }}         # [linux]
       run:
         - python
         - {{ pin_compatible("qt-main", max_pin="x.x") }}
