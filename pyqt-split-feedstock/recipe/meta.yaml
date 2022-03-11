@@ -46,7 +46,6 @@ outputs:
         - {{ compiler('cxx') }}
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-        - cython                                 # [build_platform != target_platform]
       host:
         - python
         - setuptools
@@ -130,16 +129,33 @@ outputs:
         - qt-main
       run:
         - python
-        - qt-main
-        - pyqt5-sip
+        - {{ pin_compatible("qt-main", max_pin="x.x") }}
+        - {{ pin_subpackage('pyqt5-sip', exact=True) }}
     test:
+      files:
+        - pyqt_test.py
       imports:
         - PyQt5
-        # - simplejson.tests
-      requires:
-        - pip
+        - PyQt5.QtCore
+        - PyQt5.QtGui
+        - PyQt5.QtHelp
+        - PyQt5.QtMultimedia
+        - PyQt5.QtMultimediaWidgets
+        - PyQt5.QtNetwork
+        - PyQt5.QtOpenGL
+        - PyQt5.QtPrintSupport
+        - PyQt5.QtQml
+        - PyQt5.QtQuick
+        - PyQt5.QtSvg
+        - PyQt5.QtTest
+        - PyQt5.QtWebChannel
+        - PyQt5.QtWebSockets
+        - PyQt5.QtWidgets
+        - PyQt5.QtXml
+        - PyQt5.QtXmlPatterns
       commands:
-        - pip check
+        - DISPLAY=localhost:1.0 xvfb-run -a bash -c 'python pyqt_test.py'  # [linux and build_platform == target_platform]
+        - pyuic5 --version  # [not win]
 
   - name: {{ webengine_name|lower }}
     version: {{ version }}
@@ -212,17 +228,14 @@ outputs:
         - pyqt-impl
       run:
         - python
-        - qt-main
-        - qt-webengine
-        - pyqt5-sip
+        - {{ pin_compatible("qt-main", max_pin="x.x") }}
+        - {{ pin_compatible("qt-webengine", max_pin="x.x") }}
         - {{ pin_subpackage('pyqt-impl', max_pin='x.x') }}
     test:
       imports:
+        - PyQt5.QtWebEngine
+        - PyQt5.QtWebEngineCore
         - PyQt5.QtWebEngineWidgets
-      requires:
-        - pip
-      commands:
-        - pip check
 
   - name: {{ charts_name|lower }}
     version: {{ version }}
@@ -294,16 +307,11 @@ outputs:
         - pyqt-impl
       run:
         - python
-        - qt-main
-        - pyqt5-sip
+        - {{ pin_compatible("qt-main", max_pin="x.x") }}
         - {{ pin_subpackage('pyqt-impl', max_pin='x.x') }}
     test:
       imports:
         - PyQt5.QtChart
-      requires:
-        - pip
-      commands:
-        - pip check
 
   - name: {{ name|lower }}
     build:
@@ -320,6 +328,36 @@ outputs:
         - {{ pin_subpackage('pyqt-impl', max_pin='x.x') }}
         - {{ pin_subpackage('pyqtwebengine', max_pin='x.x') }}
         - {{ pin_subpackage('pyqtchart', max_pin='x.x') }}
+    test:
+      files:
+        - pyqt_test.py
+      imports:
+        - PyQt5.sip
+        - PyQt5.QtChart
+        - PyQt5.QtCore
+        - PyQt5.QtGui
+        - PyQt5.QtHelp
+        - PyQt5.QtMultimedia
+        - PyQt5.QtMultimediaWidgets
+        - PyQt5.QtNetwork
+        - PyQt5.QtOpenGL
+        - PyQt5.QtPrintSupport
+        - PyQt5.QtQml
+        - PyQt5.QtQuick
+        - PyQt5.QtSvg
+        - PyQt5.QtTest
+        - PyQt5.QtWebChannel
+        - PyQt5.QtWebEngine
+        - PyQt5.QtWebEngineCore
+        - PyQt5.QtWebEngineWidgets
+        - PyQt5.QtWebSockets
+        - PyQt5.QtWidgets
+        - PyQt5.QtXml
+        - PyQt5.QtXmlPatterns
+      commands:
+        - DISPLAY=localhost:1.0 xvfb-run -a bash -c 'python pyqt_test.py'  # [linux and build_platform == target_platform]
+        - pyuic5 --version  # [not win]
+        - conda list  # [not win]
 
 about:
   home: https://www.riverbankcomputing.com/software/pyqt/
@@ -338,7 +376,10 @@ about:
 
 extra:
   recipe-maintainers:
-    # GitHub IDs for maintainers of the recipe.
-    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
-    - LisaSimpson
-    - LandoCalrissian
+    - andfoy
+    - ccordoba12
+    - mingwandroid
+    - gillins
+    - msarahan
+    - ocefpaf
+    - jschueller
