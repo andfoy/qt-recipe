@@ -1,5 +1,7 @@
 set -exou
 
+pushd pyqt
+
 if [[ $(uname) == "Linux" ]]; then
     USED_BUILD_PREFIX=${BUILD_PREFIX:-${PREFIX}}
     echo USED_BUILD_PREFIX=${BUILD_PREFIX}
@@ -30,7 +32,7 @@ if [[ $(uname) == "Linux" ]]; then
     --no-make
 
     pushd build
-    CPATH=$PREFIX/include make -j$(nproc)
+    CPATH=$PREFIX/include make -j$CPU_COUNT
     make install
 fi
 
